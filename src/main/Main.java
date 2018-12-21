@@ -32,7 +32,7 @@ public class Main {
 		
 		Heroes[] heroes = createRandomComp(playersNames.length);
 		
-		//TODO Shuffle the players
+		shuffleArray(playersNames);
 		
 		for(int i = 0; i < players.length; i++) {
 			playersNames[i] += " → " + heroes[i];
@@ -77,6 +77,15 @@ public class Main {
 		
 		if(numberOfPlayers > 12)
 			throw new IllegalArgumentException("The number of players needs to be twelve at maximum.");
+	}
+	
+	private static void shuffleArray(String[] array) {
+	    for (int i = array.length - 1; i > 0; i--) {
+	        int j = (int) Math.floor(Math.random() * (i + 1));
+	        String temp = array[i];
+	        array[i] = array[j];
+	        array[j] = temp;
+	    }
 	}
 
 }
