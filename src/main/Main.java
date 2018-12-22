@@ -2,6 +2,8 @@ package main;
 
 import java.util.*;
 
+import com.google.common.collect.*;
+
 import logic.RandomCompCreator;
 import model.*;
 
@@ -43,6 +45,7 @@ public class Main {
 		}
 		*/
 		
+		/*
 		Map<HeroRole, Integer> build = new HashMap<>();
 		
 		build.put(HeroSubclass.MainTank, 1);
@@ -52,7 +55,21 @@ public class Main {
 		build.put(HeroSubclass.Hitscan, 1);
 		build.put(HeroSubclass.Projectiles, 1);
 		
-		List<String> comp = RandomCompCreator.createByHeroRole(build);
+		List<String> comp = RandomCompCreator.create(build);
+		
+		for(int i = 0; i < comp.size(); i++) {
+			System.out.println(comp.get(i));
+		}
+		*/
+		
+		Multimap <HeroRole, String> build = HashMultimap.create();
+		
+		build.put(HeroSubclass.MainTank, "Paupa");
+		build.put(HeroSubclass.MainTank, "Utezas");
+		build.put(HeroSubclass.MainHeal, "Shyro");
+		build.put(HeroSubclass.OffHeal, "Agra");
+		
+		List<String> comp = RandomCompCreator.create(build);
 		
 		for(int i = 0; i < comp.size(); i++) {
 			System.out.println(comp.get(i));
