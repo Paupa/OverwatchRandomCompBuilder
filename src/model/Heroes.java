@@ -1,5 +1,7 @@
 package model;
 
+import java.util.*;
+
 public enum Heroes {
 	
 	// Tanks
@@ -24,15 +26,33 @@ public enum Heroes {
 	Lucio(HeroClass.support, HeroSubclass.OffHeal), Mercy(HeroClass.support, HeroSubclass.MainHeal), 
 	Moira(HeroClass.support, HeroSubclass.MainHeal), Zenyatta(HeroClass.support, HeroSubclass.OffHeal);
 	
+	/*
 	private HeroClass hClass;
 	private HeroSubclass hSubclass;
+	*/
 	
+	private List<HeroRole> roles = new ArrayList<>();
+	
+	/*
 	Heroes(HeroClass hClass, HeroSubclass hSubclass) {
 		
 		this.hClass = hClass;
 		this.hSubclass = hSubclass;
 	}
+	*/
 	
+	Heroes(HeroRole... roles) {
+		
+		for(int i = 0; i < roles.length; i++) {
+			this.roles.add(roles[i]);
+		}
+	}
+	
+	public List<HeroRole> getRoles() {
+		return roles;
+	}
+	
+	/*
 	public HeroClass getHeroClass() {
 		return hClass;
 	}
@@ -40,5 +60,6 @@ public enum Heroes {
 	public HeroSubclass getHeroSubclass() {
 		return hSubclass;
 	}
+	*/
 
 }

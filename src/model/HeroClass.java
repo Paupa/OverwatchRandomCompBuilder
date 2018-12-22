@@ -1,6 +1,6 @@
 package model;
 
-public enum HeroClass {
+public enum HeroClass implements HeroRole{
 	
 	tank, damage, support
 

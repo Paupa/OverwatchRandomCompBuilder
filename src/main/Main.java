@@ -43,7 +43,7 @@ public class Main {
 		}
 		*/
 		
-		Map<HeroSubclass, Integer> build = new HashMap<>();
+		Map<HeroRole, Integer> build = new HashMap<>();
 		
 		build.put(HeroSubclass.MainTank, 1);
 		build.put(HeroSubclass.OffTank, 1);
@@ -52,7 +52,7 @@ public class Main {
 		build.put(HeroSubclass.Hitscan, 1);
 		build.put(HeroSubclass.Projectiles, 1);
 		
-		List<String> comp = RandomCompCreator.createByHeroSubclass(build);
+		List<String> comp = RandomCompCreator.createByHeroRole(build);
 		
 		for(int i = 0; i < comp.size(); i++) {
 			System.out.println(comp.get(i));

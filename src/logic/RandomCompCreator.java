@@ -34,29 +34,15 @@ public class RandomCompCreator {
 		return create(numberOfPlayers, getAllHeroes());
 	}
 	
-	public static List<String> createByHeroSubclass(Map<HeroSubclass, Integer> build) {
+	public static List<String> createByHeroRole(Map<HeroRole, Integer> build) {
 		
 		List<String> comp = new ArrayList<>();
 		
-		Iterator<HeroSubclass> buildIterator = build.keySet().iterator();
+		Iterator<HeroRole> buildIterator = build.keySet().iterator();
 		while (buildIterator.hasNext()) {
 			
-			HeroSubclass hSubclass = buildIterator.next();
-			comp.addAll(create(build.get(hSubclass), getEligibleHeroes(hSubclass)));
-		}
-		
-		return comp;
-	}
-
-	public static List<String> createByHeroClass(Map<HeroClass, Integer> build) {
-		
-		List<String> comp = new ArrayList<>();
-		
-		Iterator<HeroClass> buildIterator = build.keySet().iterator();
-		while (buildIterator.hasNext()) {
-			
-			HeroClass hClass = buildIterator.next();
-			comp.addAll(create(build.get(hClass), getEligibleHeroes(hClass)));
+			HeroRole role = buildIterator.next();
+			comp.addAll(create(build.get(role), getEligibleHeroes(role)));
 		}
 		
 		return comp;
@@ -92,7 +78,7 @@ public class RandomCompCreator {
 		return allHeroes;
 	}
 	
-	private static List<Heroes> getEligibleHeroes(HeroClass hClass) {
+	private static List<Heroes> getEligibleHeroes(HeroRole role) {
 		
 		Heroes[] heroes = Heroes.values();
 		
@@ -102,25 +88,7 @@ public class RandomCompCreator {
 			
 			Heroes hero = heroes[i];
 			
-			if(hero.getHeroClass().equals(hClass))
-				eligibleHeroes.add(hero);
-			
-		}
-		
-		return eligibleHeroes;
-	}
-	
-	private static List<Heroes> getEligibleHeroes(HeroSubclass hSubclass) {
-		
-		Heroes[] heroes = Heroes.values();
-		
-		List<Heroes> eligibleHeroes = new ArrayList<>();
-		
-		for(int i = 0; i < heroes.length; i++) {
-			
-			Heroes hero = heroes[i];
-			
-			if(hero.getHeroSubclass().equals(hSubclass))
+			if(hero.getRoles().contains(role))
 				eligibleHeroes.add(hero);
 			
 		}

@@ -1,5 +1,5 @@
 package model;
 
-public enum HeroSubclass {
+public enum HeroSubclass implements HeroRole {
 	MainTank, OffTank, MainHeal, OffHeal, Hitscan, Projectiles
 }
