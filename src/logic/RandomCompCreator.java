@@ -134,4 +134,5 @@ public class RandomCompCreator {
 			throw new IllegalArgumentException("The build is impossible to make");
 	}
 
+	//TODO Hacer que no se pueda repetir heroe (Si uno elige en build main healer y otro support, se puede repetir)
 }
