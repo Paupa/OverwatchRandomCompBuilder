@@ -1,6 +1,6 @@
 package model;
 
-public enum HeroeClass {
+public enum HeroClass {
 	
 	tank, damage, support
 

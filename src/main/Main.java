@@ -2,90 +2,47 @@ package main;
 
 import java.util.*;
 
+import logic.RandomCompCreator;
+import model.HeroClass;
 import model.Heroes;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Heroes[] comp = createRandomComp();
+		/*
+		List<String> comp = createRandomComp();
 		
-		for(int i = 0; i < comp.length; i++) {
-			System.out.println(comp[i]);
+		for(int i = 0; i < comp.size(); i++) {
+			System.out.println(comp.get(i));
 		}
 		
 		System.out.println("------------------");
+		*/
 		
-		String[] playerNames = {"Agra", "Shyro", "Tsuki"};
+		String[] playerNames = {"Shyro", "Pipeem", "Paupa"};
 		
-		String[] playerComp = createRandomCompFor(playerNames);
+		List<String> playerComp = RandomCompCreator.create(playerNames);
 		
-		for(int i = 0; i < playerComp .length; i++) {
-			System.out.println(playerComp [i]);
+		for(int i = 0; i < playerComp.size(); i++) {
+			System.out.println(playerComp.get(i));
 		}
+		
+		/*
+		Map<HeroeClass, Integer> build = new HashMap<>();
+		
+		build.put(HeroeClass.tank, 2);
+		build.put(HeroeClass.damage, 2);
+		build.put(HeroeClass.support, 2);
+		
+		List<String> comp = createRandomComp(build);
+		
+		for(int i = 0; i < comp.size(); i++) {
+			System.out.println(comp.get(i));
+		}
+		*/
 
 	}
 	
-	private static String[] createRandomCompFor(String[] players) {
-		
-		String[] playersNames = players.clone();
-		
-		Heroes[] heroes = createRandomComp(playersNames.length);
-		
-		shuffleArray(playersNames);
-		
-		for(int i = 0; i < players.length; i++) {
-			playersNames[i] += " → " + heroes[i];
-		}
-		
-		return playersNames;
-	}
 	
-	private static Heroes[] createRandomComp() {
-		return createRandomComp(6);
-	}
-	
-	private static Heroes[] createRandomComp(int numberOfPlayers) {
-		
-		checkIfNumberOfPlayersIsValid(numberOfPlayers);
-		
-		Heroes[] h = Heroes.values();
-		List<Heroes> heroes = new ArrayList<>();
-		
-		for(int i = 0; i < h.length; i++) {
-			heroes.add(h[i]);
-		}
-		
-		Random r = new Random();
-		
-		Heroes[] comp = new Heroes[numberOfPlayers];
-		
-		for(int i = 0; i < numberOfPlayers; i++) {
-			int index = r.nextInt(heroes.size());
-			
-			comp[i] = heroes.get(index);
-			
-			heroes.remove(index);
-		}
-		
-		return comp;
-	}
-	
-	private static void checkIfNumberOfPlayersIsValid(int numberOfPlayers) {
-		if(numberOfPlayers < 1)
-			throw new IllegalArgumentException("The number of players needs to be at least one.");
-		
-		if(numberOfPlayers > 12)
-			throw new IllegalArgumentException("The number of players needs to be twelve at maximum.");
-	}
-	
-	private static void shuffleArray(String[] array) {
-	    for (int i = array.length - 1; i > 0; i--) {
-	        int j = (int) Math.floor(Math.random() * (i + 1));
-	        String temp = array[i];
-	        array[i] = array[j];
-	        array[j] = temp;
-	    }
-	}
-
 }

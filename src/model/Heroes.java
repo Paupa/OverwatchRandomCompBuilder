@@ -3,30 +3,30 @@ package model;
 public enum Heroes {
 	
 	// Tanks
-	Dva(HeroeClass.tank), Orisa(HeroeClass.tank), Reinhardt(HeroeClass.tank), 
-	Roadhog(HeroeClass.tank), Winston(HeroeClass.tank), WreckingBall(HeroeClass.tank), 
-	Zarya(HeroeClass.tank),
+	Dva(HeroClass.tank), Orisa(HeroClass.tank), Reinhardt(HeroClass.tank), 
+	Roadhog(HeroClass.tank), Winston(HeroClass.tank), WreckingBall(HeroClass.tank), 
+	Zarya(HeroClass.tank),
 	
 	//Damage
-	Ashe(HeroeClass.damage), Bastion(HeroeClass.damage), Doomfist(HeroeClass.damage),
-	Genji(HeroeClass.damage), Hanzo(HeroeClass.damage), Junkrat(HeroeClass.damage), 
-	McCree(HeroeClass.damage), Mei(HeroeClass.damage), Pharah(HeroeClass.damage), 
-	Reaper(HeroeClass.damage), Soldier76(HeroeClass.damage), Sombra(HeroeClass.damage), 
-	Symmetra(HeroeClass.damage), Torbjorn(HeroeClass.damage), Tracer(HeroeClass.damage), 
-	Widowmaker(HeroeClass.damage),
+	Ashe(HeroClass.damage), Bastion(HeroClass.damage), Doomfist(HeroClass.damage),
+	Genji(HeroClass.damage), Hanzo(HeroClass.damage), Junkrat(HeroClass.damage), 
+	McCree(HeroClass.damage), Mei(HeroClass.damage), Pharah(HeroClass.damage), 
+	Reaper(HeroClass.damage), Soldier76(HeroClass.damage), Sombra(HeroClass.damage), 
+	Symmetra(HeroClass.damage), Torbjorn(HeroClass.damage), Tracer(HeroClass.damage), 
+	Widowmaker(HeroClass.damage),
 	
 	//Support
-	Ana(HeroeClass.support), Brigitte(HeroeClass.support), Lucio(HeroeClass.support), 
-	Mercy(HeroeClass.support), Moira(HeroeClass.support), Zenyatta(HeroeClass.support);
+	Ana(HeroClass.support), Brigitte(HeroClass.support), Lucio(HeroClass.support), 
+	Mercy(HeroClass.support), Moira(HeroClass.support), Zenyatta(HeroClass.support);
 	
-	private HeroeClass hClass;
+	private HeroClass hClass;
 	
-	Heroes(HeroeClass hClass) {
+	Heroes(HeroClass hClass) {
 		
 		this.hClass = hClass;
 	}
 	
-	public HeroeClass getHeroeClass() {
+	public HeroClass getHeroeClass() {
 		return hClass;
 	}
 
