@@ -1,18 +1,13 @@
 package logic;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
-import model.HeroClass;
-import model.Heroes;
+import model.*;
 
 public class RandomCompCreator {
 	
 	public static List<String> create() {
-		return create(6, getAllHeroes());
+		return create(6);
 	}
 	
 	public static List<String> create(String[] players) {
@@ -38,8 +33,22 @@ public class RandomCompCreator {
 
 		return create(numberOfPlayers, getAllHeroes());
 	}
+	
+	public static List<String> createByHeroSubclass(Map<HeroSubclass, Integer> build) {
+		
+		List<String> comp = new ArrayList<>();
+		
+		Iterator<HeroSubclass> buildIterator = build.keySet().iterator();
+		while (buildIterator.hasNext()) {
+			
+			HeroSubclass hSubclass = buildIterator.next();
+			comp.addAll(create(build.get(hSubclass), getEligibleHeroes(hSubclass)));
+		}
+		
+		return comp;
+	}
 
-	public static List<String> create(Map<HeroClass, Integer> build) {
+	public static List<String> createByHeroClass(Map<HeroClass, Integer> build) {
 		
 		List<String> comp = new ArrayList<>();
 		
@@ -93,7 +102,7 @@ public class RandomCompCreator {
 			
 			Heroes hero = heroes[i];
 			
-			if(hero.getHeroeClass().equals(hClass))
+			if(hero.getHeroClass().equals(hClass))
 				eligibleHeroes.add(hero);
 			
 		}
@@ -101,6 +110,23 @@ public class RandomCompCreator {
 		return eligibleHeroes;
 	}
 	
+	private static List<Heroes> getEligibleHeroes(HeroSubclass hSubclass) {
+		
+		Heroes[] heroes = Heroes.values();
+		
+		List<Heroes> eligibleHeroes = new ArrayList<>();
+		
+		for(int i = 0; i < heroes.length; i++) {
+			
+			Heroes hero = heroes[i];
+			
+			if(hero.getHeroSubclass().equals(hSubclass))
+				eligibleHeroes.add(hero);
+			
+		}
+		
+		return eligibleHeroes;
+	}
 
 	private static void checkIfNumberOfPlayersIsValid(int numberOfPlayers) {
 		if(numberOfPlayers < 1)

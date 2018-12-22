@@ -3,31 +3,42 @@ package model;
 public enum Heroes {
 	
 	// Tanks
-	Dva(HeroClass.tank), Orisa(HeroClass.tank), Reinhardt(HeroClass.tank), 
-	Roadhog(HeroClass.tank), Winston(HeroClass.tank), WreckingBall(HeroClass.tank), 
-	Zarya(HeroClass.tank),
+	Dva(HeroClass.tank, HeroSubclass.OffTank), Orisa(HeroClass.tank, HeroSubclass.MainTank), 
+	Reinhardt(HeroClass.tank, HeroSubclass.MainTank), Roadhog(HeroClass.tank, HeroSubclass.OffTank), 
+	Winston(HeroClass.tank, HeroSubclass.MainTank), WreckingBall(HeroClass.tank, HeroSubclass.OffTank), 
+	Zarya(HeroClass.tank, HeroSubclass.OffTank),
 	
 	//Damage
-	Ashe(HeroClass.damage), Bastion(HeroClass.damage), Doomfist(HeroClass.damage),
-	Genji(HeroClass.damage), Hanzo(HeroClass.damage), Junkrat(HeroClass.damage), 
-	McCree(HeroClass.damage), Mei(HeroClass.damage), Pharah(HeroClass.damage), 
-	Reaper(HeroClass.damage), Soldier76(HeroClass.damage), Sombra(HeroClass.damage), 
-	Symmetra(HeroClass.damage), Torbjorn(HeroClass.damage), Tracer(HeroClass.damage), 
-	Widowmaker(HeroClass.damage),
+	Ashe(HeroClass.damage, HeroSubclass.Hitscan), Bastion(HeroClass.damage, HeroSubclass.Hitscan), 
+	Doomfist(HeroClass.damage, HeroSubclass.Projectiles),
+	Genji(HeroClass.damage, HeroSubclass.Projectiles), Hanzo(HeroClass.damage, HeroSubclass.Projectiles), 
+	Junkrat(HeroClass.damage, HeroSubclass.Projectiles), McCree(HeroClass.damage, HeroSubclass.Hitscan), 
+	Mei(HeroClass.damage, HeroSubclass.Projectiles), Pharah(HeroClass.damage, HeroSubclass.Projectiles), 
+	Reaper(HeroClass.damage, HeroSubclass.Projectiles), Soldier76(HeroClass.damage, HeroSubclass.Hitscan), 
+	Sombra(HeroClass.damage, HeroSubclass.Hitscan), Symmetra(HeroClass.damage, HeroSubclass.Projectiles), 
+	Torbjorn(HeroClass.damage, HeroSubclass.Projectiles), Tracer(HeroClass.damage, HeroSubclass.Hitscan), 
+	Widowmaker(HeroClass.damage, HeroSubclass.Hitscan),
 	
 	//Support
-	Ana(HeroClass.support), Brigitte(HeroClass.support), Lucio(HeroClass.support), 
-	Mercy(HeroClass.support), Moira(HeroClass.support), Zenyatta(HeroClass.support);
+	Ana(HeroClass.support, HeroSubclass.MainHeal), Brigitte(HeroClass.support, HeroSubclass.OffHeal), 
+	Lucio(HeroClass.support, HeroSubclass.OffHeal), Mercy(HeroClass.support, HeroSubclass.MainHeal), 
+	Moira(HeroClass.support, HeroSubclass.MainHeal), Zenyatta(HeroClass.support, HeroSubclass.OffHeal);
 	
 	private HeroClass hClass;
+	private HeroSubclass hSubclass;
 	
-	Heroes(HeroClass hClass) {
+	Heroes(HeroClass hClass, HeroSubclass hSubclass) {
 		
 		this.hClass = hClass;
+		this.hSubclass = hSubclass;
 	}
 	
-	public HeroClass getHeroeClass() {
+	public HeroClass getHeroClass() {
 		return hClass;
+	}
+	
+	public HeroSubclass getHeroSubclass() {
+		return hSubclass;
 	}
 
 }
