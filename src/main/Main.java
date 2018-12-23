@@ -78,6 +78,7 @@ public class Main {
 		}
 		*/
 		
+		/*
 		List<String> players = new ArrayList<>();
 		
 		players.add("Paupa");
@@ -89,8 +90,30 @@ public class Main {
 		for(int i = 0; i < challenges.size(); i++) {
 			
 			System.out.println(challenges.get(i));
-		}
+		}*/
+		
+		randomCompForParty();
 
+	}
+	
+	private static void randomCompForParty() {
+		
+		Map<String, HeroRole> party = new HashMap<>();
+		
+		party.put("Paupa", HeroSubclass.MainTank);
+		party.put("Shyro", HeroSubclass.MainHeal);
+		party.put("Utezas", HeroSubclass.OffTank);
+		party.put("Agra", HeroSubclass.OffHeal);
+		
+		Map<Assignation, HeroRole> comp = RandomCompCreator.createByHeroRoleForPlayer(party);
+		
+		Set<Assignation> assignations = comp.keySet();
+		
+		for(Assignation assignation : assignations) {
+			
+			System.out.println(assignation.getPlayer() + " → " + assignation.getHero() + " (" + comp.get(assignation) + ")");
+			
+		}
 	}
 	
 	
