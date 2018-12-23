@@ -15,7 +15,11 @@ public enum Challenges {
 	fuckYou("FUCK YOU IN PARTICULAR", "Solo puedes hacer solo ults"),
 	permaflanker("PERMAFLANKER", "Tienes que flankear siempre"),
 	noNoobs("NO NOOBS", "Juega sin interfaz"),
-	mirror("MIRROR", "Cámbiate al personaje del que te haya matado siempre");
+	mirror("MIRROR", "Cámbiate al personaje del que te haya matado siempre"),
+	cambiarSensibilidad("QUÉ LÍO", "Sube tu sensibilidad 2.0 puntos"),
+	sinShift("SIN SHIFT", "No puedes usar las habilidades asignadas a la tecla shift"),
+	sinE("SIN E", "No puedes usar las habilidades asignadas a la tecla e"),
+	sinClickDerecho("SIN CLICK DERECHO", "No puedes usar las habilidades asignadas al click derecho");
 	
 	private String title;
 	private String description;
