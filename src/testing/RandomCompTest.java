@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.junit.Test;
 
-import logic.RandomCompCreator;
+import logic.RandomCompBuilder;
 import model.*;
 
 public class RandomCompTest {
@@ -14,7 +14,7 @@ public class RandomCompTest {
 	@Test
 	public void testCreateBasic() {
 		
-		List<Heroes> comp = RandomCompCreator.create();
+		List<Heroes> comp = RandomCompBuilder.create();
 		
 		assert(comp.size() == 6);
 	}
@@ -55,7 +55,7 @@ public class RandomCompTest {
 		try {
 			String[] players = null;
 			
-			RandomCompCreator.create(players);
+			RandomCompBuilder.create(players);
 			
 			fail();
 			
@@ -72,7 +72,7 @@ public class RandomCompTest {
 			
 			Map<HeroRole, Integer> build = null;
 			
-			RandomCompCreator.create(build);
+			RandomCompBuilder.create(build);
 			
 			fail();
 		} catch (IllegalArgumentException e) {
@@ -87,7 +87,7 @@ public class RandomCompTest {
 		try {
 			String[] players = {};
 			
-			RandomCompCreator.create(players);
+			RandomCompBuilder.create(players);
 			
 			fail();
 			
@@ -99,7 +99,7 @@ public class RandomCompTest {
 	
 	public void testCreateOffLimits(int numberOfPlayers) {
 		try {
-			RandomCompCreator.create(numberOfPlayers);
+			RandomCompBuilder.create(numberOfPlayers);
 			
 			//If the comp can be created the test must fail
 			fail();
@@ -113,7 +113,7 @@ public class RandomCompTest {
 	
 	public void testCreateOnLimits(int numberOfPlayers) {
 		
-		List<Heroes> build = RandomCompCreator.create(numberOfPlayers);
+		List<Heroes> build = RandomCompBuilder.create(numberOfPlayers);
 		
 		assert(build.size() == numberOfPlayers);
 	}

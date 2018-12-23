@@ -5,7 +5,7 @@ import java.util.*;
 import com.google.common.collect.*;
 
 import logic.ChallengeAssigner;
-import logic.RandomCompCreator;
+import logic.RandomCompBuilder;
 import model.*;
 
 public class Main {
@@ -105,7 +105,7 @@ public class Main {
 		party.put("Utezas", HeroSubclass.OffTank);
 		party.put("Agra", HeroSubclass.OffHeal);
 		
-		Map<Assignation, HeroRole> comp = RandomCompCreator.createByHeroRoleForPlayer(party);
+		Map<Assignation, HeroRole> comp = RandomCompBuilder.createByHeroRoleForPlayer(party);
 		
 		Set<Assignation> assignations = comp.keySet();
 		

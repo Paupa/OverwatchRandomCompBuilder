@@ -7,7 +7,7 @@ import com.google.common.collect.Multimap;
 
 import model.*;
 
-public class RandomCompCreator {
+public class RandomCompBuilder {
 	
 	public static List<Heroes> create() {
 		return create(6);
