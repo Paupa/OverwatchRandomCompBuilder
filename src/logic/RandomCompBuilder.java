@@ -18,24 +18,21 @@ public class RandomCompBuilder {
 		return create(numberOfPlayers, getAllHeroes());
 	}
 	
-	public static List<Assignation> create(String[] players) {
+	public static List<Assignation> create(Set<String> players) {
 		
 		checkIfNull(players);
 		
-		List<String> playersNames = Utilities.arrayToList(players);
-		
-		List<Heroes> heroes = create(playersNames.size());
-		
-		Utilities.shuffleList(playersNames);
+		List<Heroes> heroes = create(players.size());
 		
 		List<Assignation> assignations = new ArrayList<>();
 		
-		for(int i = 0; i < players.length; i++) {
+		int heroIndex = 0;
+		
+		for(String player: players) {
 			
-			String playerName = playersNames.get(i);
-			Heroes hero = heroes.get(i);
+			Heroes hero = heroes.get(heroIndex++);
 			
-			Assignation assignation = new Assignation(playerName, hero);
+			Assignation assignation = new Assignation(player, hero);
 			
 			assignations.add(assignation);
 		}

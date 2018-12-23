@@ -50,10 +50,10 @@ public class RandomCompTest {
 	}
 	
 	@Test
-	public void testCreateNullArray() {
+	public void testCreateNullSet() {
 		
 		try {
-			String[] players = null;
+			Set<String> players = null;
 			
 			RandomCompBuilder.create(players);
 			
@@ -75,22 +75,6 @@ public class RandomCompTest {
 			RandomCompBuilder.create(build);
 			
 			fail();
-		} catch (IllegalArgumentException e) {
-			
-		}
-		
-	}
-	
-	@Test
-	public void testCreateEmptyArray() {
-		
-		try {
-			String[] players = {};
-			
-			RandomCompBuilder.create(players);
-			
-			fail();
-			
 		} catch (IllegalArgumentException e) {
 			
 		}
