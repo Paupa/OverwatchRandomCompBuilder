@@ -21,7 +21,7 @@ public class RandomCompTest {
 	
 	@Test
 	public void testCreateLessThanMinimumPlayers() {
-		testCreateOffLimits(0);
+		testCreateOnLimits(0);
 		
 	}
 	

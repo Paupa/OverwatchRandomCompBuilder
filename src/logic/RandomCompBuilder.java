@@ -46,14 +46,17 @@ public class RandomCompBuilder {
 		
 		Map<HeroRole, List<Heroes>> comp = new HashMap<>();
 		
-		Iterator<HeroRole> buildIterator = build.keySet().iterator();
-		while (buildIterator.hasNext()) {
+		Set<HeroRole> roles = build.keySet();
+		
+		List<Heroes> bannedHeroes = new ArrayList<>();
+		
+		for(HeroRole role : roles) {
 			
-			HeroRole role = buildIterator.next();
-			
-			List<Heroes> heroes = create(build.get(role), getEligibleHeroes(role));
+			List<Heroes> heroes = create(build.get(role), getEligibleHeroes(role, bannedHeroes));
 			
 			comp.put(role, heroes);
+			
+			bannedHeroes.addAll(heroes);
 		}
 		
 		return comp;
@@ -63,13 +66,12 @@ public class RandomCompBuilder {
 		
 		checkIfNull(build);
 		
-		Iterator<String> iterator = build.keySet().iterator();
+		Set<String> players = build.keySet();
 		
 		Multimap<HeroRole, String> multimap = HashMultimap.create();
 		
-		while(iterator.hasNext()) {
+		for(String player : players) {
 			
-			String player = iterator.next();
 			HeroRole role = build.get(player);
 			
 			multimap.put(role, player);
@@ -84,26 +86,27 @@ public class RandomCompBuilder {
 		
 		Map<Assignation, HeroRole> comp = new HashMap<>();
 		
-		Iterator<HeroRole> buildIterator = build.keySet().iterator();
-		while (buildIterator.hasNext()) {
-			
-			HeroRole role = buildIterator.next();
+		Set<HeroRole> roles = build.keySet();
+		
+		List<Heroes> bannedHeroes = new ArrayList<>();
+		
+		for (HeroRole role : roles) {
 			
 			Collection<String> players = build.get(role);
 			
-			List<Heroes> heroes = create(players.size(), getEligibleHeroes(role));
+			List<Heroes> heroes = create(players.size(), getEligibleHeroes(role, bannedHeroes));
 			
 			Iterator<String> playersIterator = players.iterator();
 			
-			for (int i = 0; i < heroes.size(); i++) {
-				
-				Heroes heroe = heroes.get(i);
+			for(Heroes hero : heroes) {
 				
 				String player = playersIterator.next();
 				
-				Assignation assignation = new Assignation(player, heroe);
+				Assignation assignation = new Assignation(player, hero);
 				
 				comp.put(assignation, role);
+				
+				bannedHeroes.add(hero);
 			}
 		}
 		
@@ -130,6 +133,7 @@ public class RandomCompBuilder {
 	}
 	
 	private static List<Heroes> getAllHeroes() {
+		
 		Heroes[] heroes = Heroes.values();
 		
 		List<Heroes> allHeroes = new ArrayList<>();
@@ -141,36 +145,33 @@ public class RandomCompBuilder {
 		return allHeroes;
 	}
 	
-	private static List<Heroes> getEligibleHeroes(HeroRole role) {
+	private static List<Heroes> getEligibleHeroes(HeroRole role, List<Heroes> bannedHeroes) {
 		
-		Heroes[] heroes = Heroes.values();
+		if(bannedHeroes == null)
+			bannedHeroes = new ArrayList<>();
 		
-		List<Heroes> eligibleHeroes = new ArrayList<>();
+		List<Heroes> heroes = getAllHeroes();
 		
-		for(int i = 0; i < heroes.length; i++) {
-			
-			Heroes hero = heroes[i];
-			
-			if(hero.getRoles().contains(role))
-				eligibleHeroes.add(hero);
-			
+		List<Heroes> heroesToRemove = new ArrayList<>();
+		
+		for(Heroes hero : heroes) {
+			if(bannedHeroes.contains(hero) || !hero.getRoles().contains(role))
+				heroesToRemove.add(hero);
 		}
 		
-		return eligibleHeroes;
+		heroes.removeAll(heroesToRemove);
+		
+		return heroes;
 	}
 	
 	private static void checkIfNull(Object object) {
 		if(object == null)
-			checkIfNumberOfPlayersIsValid(0, 0);
+			checkIfNumberOfPlayersIsValid(-1, 0);
 	}
 
 	private static void checkIfNumberOfPlayersIsValid(int numberOfPlayers, int numberOfEligibleHeroes) {
-		if(numberOfPlayers < 1)
-			throw new IllegalArgumentException("The number of players needs to be at least one.");
-		
-		if(numberOfPlayers > numberOfEligibleHeroes)
+		if(numberOfPlayers < 0 || numberOfPlayers > numberOfEligibleHeroes)
 			throw new IllegalArgumentException("The build is impossible to make");
 	}
 
-	//TODO Hacer que no se pueda repetir heroe (Si uno elige en build main healer y otro support, se puede repetir. Evitarlo)
 }
