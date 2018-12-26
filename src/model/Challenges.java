@@ -1,8 +1,6 @@
 package model;
 
 public enum Challenges {
-	manoContraria("MANO CONTRARIA", "Intercambia la mano del ratón y del teclado"),
-	mareo("QUÉ MAREO", "Invierte los controles de movimiento"),
 	panicUlt("PANIC ULT", "Usa tu ulti nada más la consigas"),
 	berseker("BERSEKER", "Cada vez que veas a un enemigo tienes que ir hacia él para matarlo"),
 	doomfist("TODOS SOMOS DOOMFIST", "Solo podéis atacar con puñitos"),
@@ -19,7 +17,8 @@ public enum Challenges {
 	cambiarSensibilidad("QUÉ LÍO", "Sube tu sensibilidad 2.0 puntos"),
 	sinShift("SIN SHIFT", "No puedes usar las habilidades asignadas a la tecla shift"),
 	sinE("SIN E", "No puedes usar las habilidades asignadas a la tecla e"),
-	sinClickDerecho("SIN CLICK DERECHO", "No puedes usar las habilidades asignadas al click derecho");
+	sinClickDerecho("SIN CLICK DERECHO", "No puedes usar las habilidades asignadas al click derecho"),
+	sneaky("SNEAKY", "Debes pasarte la partida jugando agachado");
 	
 	private String title;
 	private String description;

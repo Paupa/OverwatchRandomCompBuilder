@@ -78,31 +78,55 @@ public class Main {
 		}
 		*/
 		
-		/*
+		//randomCompForParty();
+		
+		String[] players = {"Mau", "Espinakas", "Shyro", "Pipeem", "Paupa"};
+		
+		challengesFor(players);
+		
+		//System.out.println("---------------------");
+		
+		//randomCompFor(players);
+
+	}
+	
+	private static void challengesFor(String... playerNames) {
+		
 		List<String> players = new ArrayList<>();
 		
-		players.add("Paupa");
-		players.add("Agra");
-		players.add("Shyro");
+		for(String playerName: playerNames)
+			players.add(playerName);
 		
 		List<String> challenges = ChallengeAssigner.assign(players);
 		
 		for(int i = 0; i < challenges.size(); i++) {
 			
 			System.out.println(challenges.get(i));
-		}*/
+		}
+	}
+	
+	private static void randomCompFor(String... playerNames) {
 		
-		randomCompForParty();
-
+		Set<String> players = new TreeSet<>();
+		
+		for(String playerName: playerNames)
+			players.add(playerName);
+		
+		List<Assignation> playerComp = RandomCompBuilder.create(players);
+		
+		for(Assignation assignation : playerComp) {
+			
+			System.out.println(assignation.getPlayer() + " → " + assignation.getHero());
+		}
 	}
 	
 	private static void randomCompForParty() {
 		
 		Map<String, HeroRole> party = new HashMap<>();
 		
-		party.put("Paupa", HeroSubclass.MainTank);
-		party.put("Shyro", HeroSubclass.MainHeal);
-		party.put("Utezas", HeroSubclass.OffTank);
+		party.put("Paupa", HeroClass.tank);
+		party.put("Shyro", HeroClass.damage);
+		party.put("Espinakas", HeroClass.damage);
 		party.put("Agra", HeroSubclass.OffHeal);
 		
 		Map<Assignation, HeroRole> comp = RandomCompBuilder.createByHeroRoleForPlayer(party);
